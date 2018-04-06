@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name ucan_custom)(type Legacy)(uri D:/GIThub/kicad_lib/ucan_custom.lib)(options "")(descr ""))
+  (lib (name lin_bb-rescue)(type Legacy)(uri ${KIPRJMOD}/lin_bb-rescue.lib)(options "")(descr ""))
+)
