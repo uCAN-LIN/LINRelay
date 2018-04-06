@@ -31,7 +31,7 @@ U 1 1 5AC48C21
 P 3350 2450
 F 0 "U2" H 3450 3215 50  0000 C CNN
 F 1 "PIC16(L)F15323" H 3450 3124 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 3350 2450 50  0001 C CNN
+F 2 "Housings_SSOP:TSSOP-14_4.4x5mm_Pitch0.65mm" H 3350 2450 50  0001 C CNN
 F 3 "" H 3350 2450 50  0001 C CNN
 	1    3350 2450
 	1    0    0    -1  
@@ -213,16 +213,12 @@ Text GLabel 4900 4100 2    50   Input ~ 0
 LIN_Rx
 Text GLabel 4900 4200 2    50   Input ~ 0
 LIN_CS
-Text GLabel 4900 4300 2    50   Input ~ 0
-LIN_nWAKE
 Text GLabel 4900 4400 2    50   Input ~ 0
 LIN_TxD
 Wire Wire Line
 	4450 4100 4900 4100
 Wire Wire Line
 	4900 4200 4450 4200
-Wire Wire Line
-	4450 4300 4900 4300
 Wire Wire Line
 	4900 4400 4450 4400
 Wire Wire Line
@@ -404,7 +400,7 @@ F 3 "" H 7400 2300 50  0001 C CNN
 $EndComp
 Text GLabel 2850 2600 0    50   Input ~ 0
 RELAY_OUT
-Text GLabel 7100 1500 0    50   Input ~ 0
+Text GLabel 6950 1500 0    50   Input ~ 0
 RELAY_OUT
 Wire Wire Line
 	2250 2300 2850 2300
@@ -417,8 +413,6 @@ Text GLabel 2850 2100 0    50   Input ~ 0
 LIN_TxD
 Text GLabel 2850 2400 0    50   Input ~ 0
 LIN_CS
-Text GLabel 2850 2200 0    50   Input ~ 0
-LIN_nWAKE
 Wire Wire Line
 	8750 2100 8550 2100
 Wire Wire Line
@@ -441,4 +435,35 @@ Wire Wire Line
 	4350 2200 4350 2000
 Wire Wire Line
 	4350 2000 4600 2000
+$Comp
+L device:R_Small R3
+U 1 1 5AC76465
+P 7100 1600
+F 0 "R3" H 6950 1600 50  0000 L CNN
+F 1 "10k" H 7159 1555 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" H 7100 1600 50  0001 C CNN
+F 3 "" H 7100 1600 50  0001 C CNN
+	1    7100 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7100 1500 6950 1500
+Connection ~ 7100 1500
+$Comp
+L power:GND #PWR017
+U 1 1 5AC76B58
+P 7100 1700
+F 0 "#PWR017" H 7100 1450 50  0001 C CNN
+F 1 "GND" H 7105 1527 50  0001 C CNN
+F 2 "" H 7100 1700 50  0001 C CNN
+F 3 "" H 7100 1700 50  0001 C CNN
+	1    7100 1700
+	1    0    0    -1  
+$EndComp
+Text GLabel 2850 2200 0    50   Input ~ 0
+LIN_nWAKE
+Text GLabel 4900 4300 2    50   Input ~ 0
+LIN_nWAKE
+Wire Wire Line
+	4450 4300 4900 4300
 $EndSCHEMATC
