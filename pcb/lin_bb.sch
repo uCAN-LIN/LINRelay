@@ -15,17 +15,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L ucan_custom:MCP2003 U1
-U 1 1 5AC48B93
-P 4000 4300
-F 0 "U1" H 4025 4765 50  0000 C CNN
-F 1 "MCP2003B" H 4025 4674 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 4000 4300 50  0001 C CNN
-F 3 "" H 4000 4300 50  0001 C CNN
-	1    4000 4300
-	-1   0    0    -1  
-$EndComp
-$Comp
 L ucan_custom:PIC16(L)F15323 U2
 U 1 1 5AC48C21
 P 3350 2450
@@ -33,6 +22,7 @@ F 0 "U2" H 3450 3215 50  0000 C CNN
 F 1 "PIC16(L)F15323" H 3450 3124 50  0000 C CNN
 F 2 "Housings_SSOP:TSSOP-14_4.4x5mm_Pitch0.65mm" H 3350 2450 50  0001 C CNN
 F 3 "" H 3350 2450 50  0001 C CNN
+F 4 "https://octopart.com/pic16f15323-i%2Fst-microchip-81931877?r=sp&s=HL3pw_54Qo6Ax9AhIqXJRw" H 3350 2450 50  0001 C CNN "1st Disrtib Link"
 	1    3350 2450
 	1    0    0    -1  
 $EndComp
@@ -61,12 +51,12 @@ $EndComp
 $Comp
 L device:R_Small R1
 U 1 1 5AC48E5A
-P 4450 4000
-F 0 "R1" H 4509 4046 50  0000 L CNN
-F 1 "10k" H 4509 3955 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603" H 4450 4000 50  0001 C CNN
-F 3 "" H 4450 4000 50  0001 C CNN
-	1    4450 4000
+P 4850 4600
+F 0 "R1" H 4909 4646 50  0000 L CNN
+F 1 "10k" H 4909 4555 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" H 4850 4600 50  0001 C CNN
+F 3 "" H 4850 4600 50  0001 C CNN
+	1    4850 4600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -107,22 +97,11 @@ L relays:G5Q-1 K1
 U 1 1 5AC4D3C5
 P 7400 2200
 F 0 "K1" H 8030 2446 50  0000 L CNN
-F 1 "G5Q-1" H 8030 2355 50  0000 L CNN
+F 1 "RM51-3011-85-1012" H 8030 2355 50  0000 L CNN
 F 2 "ucan_custom:RM51_RM50" H 8050 2350 50  0001 L CNN
-F 3 "https://www.omron.com/ecb/products/pdf/en-g5q.pdf" H 8050 2050 50  0001 L CNN
+F 3 "" H 8050 2050 50  0001 L CNN
+F 4 "https://www.tme.eu/pl/details/rm513011851012/przekazniki-elektromagn-miniaturowe/relpol/rm51-3011-85-1012/" H 7400 2200 50  0001 C CNN "1st Disrtib Link"
 	1    7400 2200
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:Q_NMOS_DGS Q1
-U 1 1 5AC4D7B0
-P 7300 1500
-F 0 "Q1" H 7505 1546 50  0000 L CNN
-F 1 "NTR4003NT1G " H 7505 1455 50  0000 L CNN
-F 2 "TO_SOT_Packages_SMD:SOT-23" H 7500 1600 50  0001 C CNN
-F 3 "" H 7300 1500 50  0001 C CNN
-F 4 "https://www.tme.eu/pl/details/ntr4003nt1g/tranzystory-z-kanalem-n-smd/on-semiconductor/" H 7300 1500 50  0001 C CNN "1st Disrtib Link"
-	1    7300 1500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -147,10 +126,6 @@ F 3 "" V 2900 4200 50  0001 C CNN
 	1    2900 4200
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	3300 4300 3500 4300
-Wire Wire Line
-	3300 4200 3500 4200
 $Comp
 L power:GND #PWR02
 U 1 1 5AC52CEE
@@ -167,7 +142,6 @@ Wire Wire Line
 Wire Wire Line
 	3500 4500 3500 4400
 Connection ~ 3300 4500
-Connection ~ 3300 4300
 Wire Wire Line
 	3000 4400 3000 4500
 Wire Wire Line
@@ -189,38 +163,29 @@ $EndComp
 $Comp
 L power:+3V3 #PWR04
 U 1 1 5AC531A0
-P 3500 4100
-F 0 "#PWR04" H 3500 3950 50  0001 C CNN
-F 1 "+3V3" H 3515 4273 50  0000 C CNN
-F 2 "" H 3500 4100 50  0001 C CNN
-F 3 "" H 3500 4100 50  0001 C CNN
-	1    3500 4100
+P 4850 3950
+F 0 "#PWR04" H 4850 3800 50  0001 C CNN
+F 1 "+3V3" H 4865 4123 50  0000 C CNN
+F 2 "" H 4850 3950 50  0001 C CNN
+F 3 "" H 4850 3950 50  0001 C CNN
+	1    4850 3950
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR05
 U 1 1 5AC531FF
-P 4450 3900
-F 0 "#PWR05" H 4450 3750 50  0001 C CNN
-F 1 "+3V3" H 4465 4073 50  0000 C CNN
-F 2 "" H 4450 3900 50  0001 C CNN
-F 3 "" H 4450 3900 50  0001 C CNN
-	1    4450 3900
-	1    0    0    -1  
+P 4850 4700
+F 0 "#PWR05" H 4850 4550 50  0001 C CNN
+F 1 "+3V3" H 4865 4873 50  0000 C CNN
+F 2 "" H 4850 4700 50  0001 C CNN
+F 3 "" H 4850 4700 50  0001 C CNN
+	1    4850 4700
+	0    -1   -1   0   
 $EndComp
-Connection ~ 4450 4100
-Text GLabel 4900 4100 2    50   Input ~ 0
+Text GLabel 5300 4500 2    50   Input ~ 0
 LIN_Rx
-Text GLabel 4900 4200 2    50   Input ~ 0
-LIN_CS
-Text GLabel 4900 4400 2    50   Input ~ 0
+Text GLabel 5300 4400 2    50   Input ~ 0
 LIN_TxD
-Wire Wire Line
-	4450 4100 4900 4100
-Wire Wire Line
-	4900 4200 4450 4200
-Wire Wire Line
-	4900 4400 4450 4400
 Wire Wire Line
 	2800 4200 2750 4200
 $Comp
@@ -274,24 +239,24 @@ MCLR
 $Comp
 L power:+3V3 #PWR010
 U 1 1 5AC54C4B
-P 2250 2250
-F 0 "#PWR010" H 2250 2100 50  0001 C CNN
-F 1 "+3V3" H 2265 2423 50  0000 C CNN
-F 2 "" H 2250 2250 50  0001 C CNN
-F 3 "" H 2250 2250 50  0001 C CNN
-	1    2250 2250
+P 2250 2050
+F 0 "#PWR010" H 2250 1900 50  0001 C CNN
+F 1 "+3V3" H 2265 2223 50  0000 C CNN
+F 2 "" H 2250 2050 50  0001 C CNN
+F 3 "" H 2250 2050 50  0001 C CNN
+	1    2250 2050
 	1    0    0    -1  
 $EndComp
 $Comp
 L device:R_Small R2
 U 1 1 5AC54C8F
-P 2150 2300
-F 0 "R2" H 2209 2346 50  0000 L CNN
-F 1 "10k" H 2209 2255 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603" H 2150 2300 50  0001 C CNN
-F 3 "" H 2150 2300 50  0001 C CNN
-	1    2150 2300
-	0    1    1    0   
+P 2250 2150
+F 0 "R2" H 2309 2196 50  0000 L CNN
+F 1 "10k" H 2309 2105 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" H 2250 2150 50  0001 C CNN
+F 3 "" H 2250 2150 50  0001 C CNN
+	1    2250 2150
+	-1   0    0    1   
 $EndComp
 $Comp
 L device:C_Small C3
@@ -412,7 +377,7 @@ LIN_Rx
 Text GLabel 2850 2100 0    50   Input ~ 0
 LIN_TxD
 Text GLabel 2850 2400 0    50   Input ~ 0
-LIN_CS
+LIN_EN
 Wire Wire Line
 	8750 2100 8550 2100
 Wire Wire Line
@@ -448,7 +413,6 @@ F 3 "" H 7100 1600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	7100 1500 6950 1500
-Connection ~ 7100 1500
 $Comp
 L power:GND #PWR017
 U 1 1 5AC76B58
@@ -460,10 +424,51 @@ F 3 "" H 7100 1700 50  0001 C CNN
 	1    7100 1700
 	1    0    0    -1  
 $EndComp
-Text GLabel 2850 2200 0    50   Input ~ 0
-LIN_nWAKE
-Text GLabel 4900 4300 2    50   Input ~ 0
-LIN_nWAKE
 Wire Wire Line
-	4450 4300 4900 4300
+	2250 2300 2050 2300
+Wire Wire Line
+	3500 4400 3950 4400
+Wire Wire Line
+	3300 4200 3950 4200
+Wire Wire Line
+	4850 3950 4850 4200
+Wire Wire Line
+	4850 4400 5300 4400
+Wire Wire Line
+	5300 4500 4850 4500
+Text GLabel 3950 4300 0    50   Input ~ 0
+LIN_EN
+Wire Wire Line
+	3600 4500 3600 4300
+Wire Wire Line
+	3600 4300 3300 4300
+Wire Wire Line
+	3600 4500 3950 4500
+Connection ~ 3300 4300
+$Comp
+L ucan_custom:TJA1028 U1
+U 1 1 5AD4A189
+P 4400 4350
+F 0 "U1" H 4400 4725 50  0000 C CNN
+F 1 "TJA1028" H 4400 4634 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 4250 4350 50  0001 C CNN
+F 3 "https://www.nxp.com/docs/en/data-sheet/TJA1028.pdf" H 4250 4350 50  0001 C CNN
+F 4 "https://octopart.com/tja1028t%2F5v0%2F20%3A11-nxp+semiconductors-28331496?r=sp&s=GYfOWVjdQZaPdbG3rADLYg" H 4400 4350 50  0001 C CNN "1st Disrtib Link"
+	1    4400 4350
+	1    0    0    -1  
+$EndComp
+Connection ~ 4850 4500
+$Comp
+L transistors:2N7002 Q1
+U 1 1 5AD4B5CB
+P 7300 1500
+F 0 "Q1" H 7506 1546 50  0000 L CNN
+F 1 "NTR4003NT1G " H 7506 1455 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 7500 1425 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 7300 1500 50  0001 L CNN
+F 4 "https://www.tme.eu/pl/details/ntr4003nt1g/tranzystory-z-kanalem-n-smd/on-semiconductor/" H 7300 1500 50  0001 C CNN "1st Disrtib Link"
+	1    7300 1500
+	1    0    0    -1  
+$EndComp
+Connection ~ 7100 1500
 $EndSCHEMATC
