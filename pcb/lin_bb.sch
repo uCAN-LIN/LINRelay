@@ -43,7 +43,7 @@ U 1 1 5AC48DF6
 P 3300 4100
 F 0 "C1" H 3391 4146 50  0000 L CNN
 F 1 "1u" H 3391 4055 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 3300 4100 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0805" H 3300 4100 50  0001 C CNN
 F 3 "" H 3300 4100 50  0001 C CNN
 	1    3300 4100
 	-1   0    0    1   
@@ -148,7 +148,6 @@ Wire Wire Line
 	3000 4500 3300 4500
 Wire Wire Line
 	3000 4200 3050 4200
-Connection ~ 3300 4200
 $Comp
 L power:GND #PWR03
 U 1 1 5AC52FA5
@@ -232,39 +231,17 @@ F 3 "" H 4600 2300 50  0001 C CNN
 	1    4600 2300
 	0    -1   -1   0   
 $EndComp
-Text GLabel 2050 2300 0    50   Input ~ 0
+Text GLabel 2850 2300 0    50   Input ~ 0
 MCLR
 Text GLabel 4600 2400 0    50   Input ~ 0
 MCLR
-$Comp
-L power:+3V3 #PWR010
-U 1 1 5AC54C4B
-P 2250 2050
-F 0 "#PWR010" H 2250 1900 50  0001 C CNN
-F 1 "+3V3" H 2265 2223 50  0000 C CNN
-F 2 "" H 2250 2050 50  0001 C CNN
-F 3 "" H 2250 2050 50  0001 C CNN
-	1    2250 2050
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:R_Small R2
-U 1 1 5AC54C8F
-P 2250 2150
-F 0 "R2" H 2309 2196 50  0000 L CNN
-F 1 "10k" H 2309 2105 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603" H 2250 2150 50  0001 C CNN
-F 3 "" H 2250 2150 50  0001 C CNN
-	1    2250 2150
-	-1   0    0    1   
-$EndComp
 $Comp
 L device:C_Small C3
 U 1 1 5AC55363
 P 4500 3000
 F 0 "C3" H 4592 3046 50  0000 L CNN
 F 1 "100n" H 4592 2955 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 4500 3000 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0805" H 4500 3000 50  0001 C CNN
 F 3 "" H 4500 3000 50  0001 C CNN
 	1    4500 3000
 	1    0    0    -1  
@@ -337,8 +314,6 @@ F 3 "" H 3050 4050 50  0001 C CNN
 $EndComp
 Connection ~ 3050 4200
 Wire Wire Line
-	3050 4200 3300 4200
-Wire Wire Line
 	3050 4050 3050 4200
 Wire Wire Line
 	3300 3700 3350 3700
@@ -355,23 +330,18 @@ Wire Wire Line
 $Comp
 L power:GND #PWR016
 U 1 1 5AC651E8
-P 7400 2300
-F 0 "#PWR016" H 7400 2050 50  0001 C CNN
-F 1 "GND" H 7405 2127 50  0001 C CNN
-F 2 "" H 7400 2300 50  0001 C CNN
-F 3 "" H 7400 2300 50  0001 C CNN
-	1    7400 2300
+P 7400 2850
+F 0 "#PWR016" H 7400 2600 50  0001 C CNN
+F 1 "GND" H 7405 2677 50  0001 C CNN
+F 2 "" H 7400 2850 50  0001 C CNN
+F 3 "" H 7400 2850 50  0001 C CNN
+	1    7400 2850
 	1    0    0    -1  
 $EndComp
 Text GLabel 2850 2600 0    50   Input ~ 0
 RELAY_OUT
-Text GLabel 6950 1500 0    50   Input ~ 0
+Text GLabel 6550 2650 0    50   Input ~ 0
 RELAY_OUT
-Wire Wire Line
-	2250 2300 2850 2300
-Wire Wire Line
-	2250 2300 2250 2250
-Connection ~ 2250 2300
 Text GLabel 2850 2500 0    50   Input ~ 0
 LIN_Rx
 Text GLabel 2850 2100 0    50   Input ~ 0
@@ -403,33 +373,29 @@ Wire Wire Line
 $Comp
 L device:R_Small R3
 U 1 1 5AC76465
-P 7100 1600
-F 0 "R3" H 6950 1600 50  0000 L CNN
-F 1 "10k" H 7159 1555 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603" H 7100 1600 50  0001 C CNN
-F 3 "" H 7100 1600 50  0001 C CNN
-	1    7100 1600
+P 6700 2750
+F 0 "R3" H 6550 2750 50  0000 L CNN
+F 1 "10k" H 6759 2705 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" H 6700 2750 50  0001 C CNN
+F 3 "" H 6700 2750 50  0001 C CNN
+	1    6700 2750
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7100 1500 6950 1500
+	6700 2650 6550 2650
 $Comp
 L power:GND #PWR017
 U 1 1 5AC76B58
-P 7100 1700
-F 0 "#PWR017" H 7100 1450 50  0001 C CNN
-F 1 "GND" H 7105 1527 50  0001 C CNN
-F 2 "" H 7100 1700 50  0001 C CNN
-F 3 "" H 7100 1700 50  0001 C CNN
-	1    7100 1700
+P 6700 2850
+F 0 "#PWR017" H 6700 2600 50  0001 C CNN
+F 1 "GND" H 6705 2677 50  0001 C CNN
+F 2 "" H 6700 2850 50  0001 C CNN
+F 3 "" H 6700 2850 50  0001 C CNN
+	1    6700 2850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2250 2300 2050 2300
-Wire Wire Line
 	3500 4400 3950 4400
-Wire Wire Line
-	3300 4200 3950 4200
 Wire Wire Line
 	4850 3950 4850 4200
 Wire Wire Line
@@ -461,14 +427,48 @@ Connection ~ 4850 4500
 $Comp
 L transistors:2N7002 Q1
 U 1 1 5AD4B5CB
-P 7300 1500
-F 0 "Q1" H 7506 1546 50  0000 L CNN
-F 1 "NTR4003NT1G " H 7506 1455 50  0000 L CNN
-F 2 "TO_SOT_Packages_SMD:SOT-23" H 7500 1425 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 7300 1500 50  0001 L CNN
-F 4 "https://www.tme.eu/pl/details/ntr4003nt1g/tranzystory-z-kanalem-n-smd/on-semiconductor/" H 7300 1500 50  0001 C CNN "1st Disrtib Link"
-	1    7300 1500
+P 7300 2650
+F 0 "Q1" H 7506 2696 50  0000 L CNN
+F 1 "NTR4003NT1G " H 7506 2605 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 7500 2575 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 7300 2650 50  0001 L CNN
+F 4 "https://www.tme.eu/pl/details/ntr4003nt1g/tranzystory-z-kanalem-n-smd/on-semiconductor/" H 7300 2650 50  0001 C CNN "1st Disrtib Link"
+	1    7300 2650
 	1    0    0    -1  
 $EndComp
-Connection ~ 7100 1500
+Connection ~ 6700 2650
+Wire Wire Line
+	3300 4200 3950 4200
+Wire Wire Line
+	3050 4200 3300 4200
+Connection ~ 3300 4200
+Wire Wire Line
+	7100 2650 6700 2650
+$Comp
+L device:D D2
+U 1 1 5B090E86
+P 6900 2000
+F 0 "D2" V 6900 2079 50  0000 L CNN
+F 1 "SMBD914E6327HTSA1" V 6945 2079 50  0001 L CNN
+F 2 "Diodes_SMD:D_SOT-23_ANK" H 6900 2000 50  0001 C CNN
+F 3 "" H 6900 2000 50  0001 C CNN
+	1    6900 2000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6900 1850 6900 1700
+Wire Wire Line
+	6900 1700 7400 1700
+Wire Wire Line
+	7400 2300 7400 2350
+Connection ~ 7400 1700
+Wire Wire Line
+	7400 2350 6900 2350
+Wire Wire Line
+	6900 2350 6900 2150
+Connection ~ 7400 2350
+Wire Wire Line
+	7400 2350 7400 2450
+Wire Wire Line
+	7400 1700 7400 1300
 $EndSCHEMATC

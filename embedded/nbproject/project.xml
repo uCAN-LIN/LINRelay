@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>ucan_lin_relay</name>
-            <creation-uuid>648740f4-5905-48ea-8113-a049c8e45f38</creation-uuid>
+            <name>ucan_relay</name>
+            <creation-uuid>f47431c6-aaf6-4f77-832a-37e4f92392ac</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>

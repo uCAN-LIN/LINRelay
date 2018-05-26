@@ -60,7 +60,7 @@
 #define LIN_FERR                RC1STAbits.FERR
 
 //Device Timer
-#define LIN_WriteTimer          TMR0_Write8bitTimer
+#define LIN_WriteTimer          TMR0_WriteTimer
 #define LIN_StartTimer          NOP
 #define LIN_StopTimer           NOP
 #define LIN_SetInterruptHandler TMR0_SetInterruptHandler

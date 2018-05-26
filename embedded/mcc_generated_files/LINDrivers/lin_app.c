@@ -39,6 +39,8 @@
 */
 
 #include "lin_app.h"
+#include "./../mcc.h"
+
 
 void LIN_Slave_Initialize(void){
 
@@ -46,17 +48,26 @@ void LIN_Slave_Initialize(void){
     
 }
 
+uint8_t cnt = 0;
 void processLIN(void){
     uint8_t tempRxData[8];
     uint8_t cmd;
 
     cmd = LIN_getPacket(tempRxData);
     switch(cmd){
-        case UNLOCK:
+        case R_CTR_1:
+            cnt ++;
+            R_STAT_1_Data[0] = cnt;
+            if ((tempRxData[1]) == 1)
+            {
+                RELAY_OUT_SetLow();
+            } else 
+            {
+                RELAY_OUT_SetHigh();
+            }
+            R_STAT_1_Data[1] = tempRxData[0];            
             break;
-        case RSSI:
-            break;
-        case LFRX:
+        case R_STAT_1:
             break;
         default:
             break;

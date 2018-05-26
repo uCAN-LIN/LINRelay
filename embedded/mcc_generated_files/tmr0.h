@@ -13,38 +13,39 @@
   @Description
     This header file provides APIs for TMR0.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65
-        Device            :  PIC16F15323
-        Driver Version    :  2.00
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
+        Device            :  PIC16F15325
+        Driver Version    :  3.00
     The generated drivers are tested against the following:
         Compiler          :  XC8 1.45
-        MPLAB 	          :  MPLAB X 4.10
+        MPLAB 	          :  MPLAB X 4.15
 */
 
-/**
-    (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
-    software and any derivatives exclusively with Microchip products.
-
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
-    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
-    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
-    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
-
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
-    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
-    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
-    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
-    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
-
-    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
-    TERMS.
+/*
+    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+    
+    Subject to your compliance with these terms, you may use Microchip software and any 
+    derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
+    license terms applicable to your use of third party software (including open source software) that 
+    may accompany Microchip software.
+    
+    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
+    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
+    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+    FOR A PARTICULAR PURPOSE.
+    
+    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
+    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
+    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
+    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
+    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+    SOFTWARE.
 */
 
-#ifndef _TMR0_H
-#define _TMR0_H
+#ifndef TMR0_H
+#define TMR0_H
 
 /**
   Section: Included Files
@@ -183,7 +184,7 @@ void TMR0_StopTimer(void);
     TMR0_StartTimer();
 
     // Read the current value of TMR0
-    if(0 == TMR0_Read8bitTimer())
+    if(0 == TMR0_ReadTimer())
     {
         // Do something else...
 
@@ -192,7 +193,7 @@ void TMR0_StopTimer(void);
     }
     </code>
 */
-uint8_t TMR0_Read8bitTimer(void);
+uint8_t TMR0_ReadTimer(void);
 
 /**
   @Summary
@@ -219,19 +220,19 @@ uint8_t TMR0_Read8bitTimer(void);
     while(1)
     {
         // Read the TMR0 register
-        if(ZERO == TMR0_Read8bitTimer())
+        if(ZERO == TMR0_ReadTimer())
         {
             // Do something else...
 
             // Write the TMR0 register
-            TMR0_Write8bitTimer(PERIOD);
+            TMR0_WriteTimer(PERIOD);
         }
 
         // Do something else...
     }
     </code>
 */
-void TMR0_Write8bitTimer(uint8_t timerVal);
+void TMR0_WriteTimer(uint8_t timerVal);
 
 /**
   @Summary
@@ -263,12 +264,12 @@ void TMR0_Write8bitTimer(uint8_t timerVal);
             TMR0IF = 0;
 
             // Change the period value of TMR0
-            TMR0_Load8bitPeriod(0x80);
+            TMR0_Reload(0x80);
         }
     }
     </code>
 */
-void TMR0_Load8bitPeriod(uint8_t periodVal);
+void TMR0_Reload(uint8_t periodVal);
 
 
 /**
@@ -350,7 +351,7 @@ void TMR0_DefaultInterruptHandler(void);
 
 #endif
 
-#endif // _TMR0_H
+#endif // TMR0_H
 /**
  End of File
 */

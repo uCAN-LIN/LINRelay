@@ -45,20 +45,17 @@
 #include "lin_slave.h"
 
 typedef enum {
-    UNLOCK = 0x00,
-    RSSI = 0x01,
-    LFRX = 0x02
+    R_CTR_1 = 0x02,
+    R_STAT_1 = 0x03
 }lin_cmd_t;
 
-uint8_t UNLOCK_Data[1];
-uint8_t RSSI_Data[8];
-uint8_t LFRX_Data[8];
+uint8_t R_CTR_1_Data[8];
+uint8_t R_STAT_1_Data[8];
 
 const lin_rx_cmd_t scheduleTable[] = {
     //Command, Type, TX/RX Length, Data Address
-    {UNLOCK, RECEIVE, 1, UNLOCK_Data },
-    {RSSI, RECEIVE, 8, RSSI_Data },
-    {LFRX, TRANSMIT, 8, LFRX_Data }
+    {R_CTR_1, RECEIVE, 8, R_CTR_1_Data },
+    {R_STAT_1, TRANSMIT, 8, R_STAT_1_Data }
 };
 #define TABLE_SIZE  (sizeof(scheduleTable)/sizeof(lin_rx_cmd_t))
 
