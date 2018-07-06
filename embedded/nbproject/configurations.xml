@@ -11,9 +11,6 @@
         <itemPath>mcc_generated_files/eusart1.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
-        <itemPath>mcc_generated_files/LINDrivers/lin_slave.h</itemPath>
-        <itemPath>mcc_generated_files/LINDrivers/lin_app.h</itemPath>
-        <itemPath>mcc_generated_files/LINDrivers/lin_hardware.h</itemPath>
         <itemPath>mcc_generated_files/pin_manager.h</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -32,9 +29,37 @@
         <itemPath>mcc_generated_files/mcc.c</itemPath>
         <itemPath>mcc_generated_files/device_config.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
-        <itemPath>mcc_generated_files/LINDrivers/lin_slave.c</itemPath>
-        <itemPath>mcc_generated_files/LINDrivers/lin_app.c</itemPath>
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="open-LIN-c" displayName="open-LIN-c" projectFiles="true">
+        <logicalFolder name="implementation"
+                       displayName="implementation"
+                       projectFiles="true">
+          <logicalFolder name="pic16" displayName="pic16" projectFiles="true">
+            <itemPath>open-LIN-c/implementation/pic16/open_lin_hw_pic16.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="ST32" displayName="ST32" projectFiles="true">
+            <itemPath>open-LIN-c/implementation/ST32/open_lin_hw_st32.c</itemPath>
+          </logicalFolder>
+          <logicalFolder name="unit_test" displayName="unit_test" projectFiles="true">
+            <itemPath>open-LIN-c/implementation/unit_test/open_lin_frame_winOS.c</itemPath>
+            <itemPath>open-LIN-c/implementation/unit_test/catch.hpp</itemPath>
+            <itemPath>open-LIN-c/implementation/unit_test/open_lin_master_tests.cpp</itemPath>
+            <itemPath>open-LIN-c/implementation/unit_test/open_lin_transport_layer_tests.cpp</itemPath>
+            <itemPath>open-LIN-c/implementation/unit_test/test_run.cpp</itemPath>
+          </logicalFolder>
+          <logicalFolder name="x86" displayName="x86" projectFiles="true">
+            <itemPath>open-LIN-c/implementation/x86/main_master_example.c</itemPath>
+            <itemPath>open-LIN-c/implementation/x86/main_slave_example.c</itemPath>
+            <itemPath>open-LIN-c/implementation/x86/open_lin_hw_x86.c</itemPath>
+            <itemPath>open-LIN-c/implementation/x86/rs232.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <itemPath>open-LIN-c/open_lin_data_layer.c</itemPath>
+        <itemPath>open-LIN-c/open_lin_master_data_layer.c</itemPath>
+        <itemPath>open-LIN-c/open_lin_network_layer.c</itemPath>
+        <itemPath>open-LIN-c/open_lin_slave_data_layer.c</itemPath>
+        <itemPath>open-LIN-c/open_lin_transport_layer.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -45,6 +70,9 @@
       <itemPath>MyConfig.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>open-LIN-c</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
@@ -161,6 +189,114 @@
         <property key="stack-size-main" value="auto"/>
         <property key="stack-type" value="compiled"/>
       </XC8-config-global>
+      <item path="open-LIN-c/implementation/ST32/open_lin_hw_st32.c"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/unit_test/catch.hpp"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/unit_test/open_lin_frame_winOS.c"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/unit_test/open_lin_master_tests.cpp"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/unit_test/open_lin_transport_layer_tests.cpp"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/unit_test/test_run.cpp"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/x86/main_master_example.c"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/x86/main_slave_example.c"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/x86/open_lin_hw_x86.c"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/implementation/x86/rs232.c" ex="true" overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="open-LIN-c/open_lin_master_data_layer.c"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>

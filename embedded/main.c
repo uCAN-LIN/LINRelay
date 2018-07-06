@@ -46,18 +46,78 @@
 /*
                          Main application
  */
+
+#include "open-LIN-c/open_lin_types.h"
+#include "open-LIN-c/open_lin_network_layer.h"
+#include "open-LIN-c/open_lin_slave_data_layer.h"
+
+l_u8 R_STAT_1_Data[8] = {0,0,0,0,0,0,0,0};
+l_u8 R_CTR_1_Data[8] = {0,1,2,3,4,5,6,7};
+l_u8 dataBuffer3[8] = {0,0,0,0,0,0,0,0};
+
+typedef enum {
+    R_CTR_1 = 0x02,
+    R_STAT_1 = 0x03
+}lin_cmd_t;
+
+open_lin_frame_slot_t slot_array[] =
+{
+    {R_CTR_1,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(R_CTR_1_Data),R_CTR_1_Data},
+    {R_STAT_1,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(R_STAT_1_Data),R_STAT_1_Data},
+    {OPEN_LIN_DIAG_REQUEST,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(dataBuffer3),dataBuffer3}
+};
+
+const l_u8 lenght_of_slot_array = sizeof( slot_array ) / sizeof( open_lin_frame_slot_t );
+
+void LIN_Slave_Initialize(void){
+
+    open_lin_slave_init();
+    open_lin_net_init(slot_array,lenght_of_slot_array);
+}
+
+uint8_t cnt = 0;
+
+void open_lin_on_rx_frame(open_lin_frame_slot_t *slot)
+{
+     switch(slot->pid){
+        case R_CTR_1:
+            cnt ++;
+            R_STAT_1_Data[0] = cnt;
+            if ((slot->data_ptr[1]) == 1)
+            {
+                RELAY_OUT_SetLow();
+            } else 
+            {
+                RELAY_OUT_SetHigh();
+            }
+            R_STAT_1_Data[1] = slot->data_ptr[0];            
+            break;
+        case R_STAT_1:
+            break;
+        default:
+            break;
+         
+     }  
+}
+
+
 void main(void)
 {
     SYSTEM_Initialize();
+    
     INTERRUPT_GlobalInterruptEnable();
     INTERRUPT_PeripheralInterruptEnable();    
-
+  
+    LIN_Slave_Initialize();
+    
     while (1)
     {
-        
-        LIN_handler();
-        // Add your application code
+        if (EUSART1_is_rx_ready())
+        {
+            open_lin_slave_rx_header(EUSART1_Read());
+        }
     }
+    
 }
 /**
  End of File

@@ -53,7 +53,6 @@
 #include "interrupt_manager.h"
 #include "tmr0.h"
 #include "eusart1.h"
-#include "LINDrivers/lin_app.h"
 
 #define _XTAL_FREQ  16000000
 

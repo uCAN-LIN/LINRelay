@@ -54,7 +54,6 @@ void SYSTEM_Initialize(void)
     OSCILLATOR_Initialize();
     TMR0_Initialize();
     EUSART1_Initialize();
-    LIN_Slave_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)
