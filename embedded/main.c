@@ -52,9 +52,16 @@
 #include "open-LIN-c/open_lin_slave_data_layer.h"
 #include "open-LIN-c/open_lin_transport_layer.h"
 
-l_u8 R_STAT_1_Data[8] = {0,0,0,0,0,0,0,0};
-l_u8 R_CTR_1_Data[8] = {0,1,2,3,4,5,6,7};
-l_u8 dataBuffer3[8] = {0,0,0,0,0,0,0,0};
+typedef struct {
+    l_u8 relay_open : 4;
+    l_u8 relay_open_save : 4;
+} t_relay_cmd; 
+
+
+t_relay_cmd R_STAT_1_Data ={0,0};
+t_relay_cmd R_CTR_1_Data = {0,0};
+
+l_u8 diag_buffer[8] = {0,0,0,0,0,0,0,0};
 
 extern open_lin_NAD_t open_lin_NAD;
 
@@ -65,10 +72,10 @@ typedef enum {
 
 open_lin_frame_slot_t slot_array[] =
 {
-    {R_CTR_1,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(R_CTR_1_Data),R_CTR_1_Data},
-    {R_STAT_1,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(R_STAT_1_Data),R_STAT_1_Data},
-    {OPEN_LIN_DIAG_REQUEST,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(dataBuffer3),dataBuffer3},
-    {OPEN_LIN_DIAG_RESPONSE,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(dataBuffer3),dataBuffer3}
+    {R_CTR_1,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(R_CTR_1_Data),(l_u8 *)&R_CTR_1_Data},
+    {R_STAT_1,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(R_STAT_1_Data),(l_u8 *)&R_STAT_1_Data},
+    {OPEN_LIN_DIAG_REQUEST,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(diag_buffer),diag_buffer},
+    {OPEN_LIN_DIAG_RESPONSE,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(diag_buffer),diag_buffer}
 };
 
 open_lin_id_translation_item_t open_lin_id_translation_tab[] = 
@@ -109,18 +116,21 @@ void open_lin_on_rx_frame(open_lin_frame_slot_t *slot)
 {
      switch(slot->pid){
         case R_CTR_1:
-            cnt ++;
-            R_STAT_1_Data[0] = cnt;
-            if ((slot->data_ptr[1]) == 1)
+        {
+            t_relay_cmd *p = (t_relay_cmd *)(slot->data_ptr);
+            if (p->relay_open)
             {
                 RELAY_OUT_SetLow();
             } else 
             {
                 RELAY_OUT_SetHigh();
-            }
-            R_STAT_1_Data[1] = slot->data_ptr[0];            
+            }    
+            R_STAT_1_Data.relay_open = R_CTR_1_Data.relay_open;
+            R_STAT_1_Data.relay_open_save = R_CTR_1_Data.relay_open_save;
             break;
+        }
         case R_STAT_1:
+            
             break;
         default:
             break;
