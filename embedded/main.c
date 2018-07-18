@@ -50,10 +50,13 @@
 #include "open-LIN-c/open_lin_types.h"
 #include "open-LIN-c/open_lin_network_layer.h"
 #include "open-LIN-c/open_lin_slave_data_layer.h"
+#include "open-LIN-c/open_lin_transport_layer.h"
 
 l_u8 R_STAT_1_Data[8] = {0,0,0,0,0,0,0,0};
 l_u8 R_CTR_1_Data[8] = {0,1,2,3,4,5,6,7};
 l_u8 dataBuffer3[8] = {0,0,0,0,0,0,0,0};
+
+extern open_lin_NAD_t open_lin_NAD;
 
 typedef enum {
     R_CTR_1 = 0x02,
@@ -64,10 +67,35 @@ open_lin_frame_slot_t slot_array[] =
 {
     {R_CTR_1,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(R_CTR_1_Data),R_CTR_1_Data},
     {R_STAT_1,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(R_STAT_1_Data),R_STAT_1_Data},
-    {OPEN_LIN_DIAG_REQUEST,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(dataBuffer3),dataBuffer3}
+    {OPEN_LIN_DIAG_REQUEST,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(dataBuffer3),dataBuffer3},
+    {OPEN_LIN_DIAG_RESPONSE,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(dataBuffer3),dataBuffer3}
 };
 
+open_lin_id_translation_item_t open_lin_id_translation_tab[] = 
+{
+    {R_CTR_1, R_CTR_1},
+    {R_STAT_1,R_STAT_1},
+    {OPEN_LIN_DIAG_REQUEST,OPEN_LIN_DIAG_REQUEST},
+    {OPEN_LIN_DIAG_RESPONSE,OPEN_LIN_DIAG_RESPONSE},
+};
+      
 const l_u8 lenght_of_slot_array = sizeof( slot_array ) / sizeof( open_lin_frame_slot_t );
+
+void open_lin_sid_callback(open_lin_frame_slot_t* slot) {
+    /* diagnostic request arrived, only one service is included so no checking done */
+    uint8_t a;
+    /* NAD updated, update frame translation_tab */
+    for (a = 0; a <= sizeof(open_lin_id_translation_tab) / sizeof(open_lin_id_translation_tab[0]); a++)
+    {
+        open_lin_id_translation_item_t* item = &open_lin_id_translation_tab[a];        
+        if ((item->id_in_lin_table != OPEN_LIN_DIAG_REQUEST) && (item->id_in_lin_table != OPEN_LIN_DIAG_RESPONSE))
+        {
+            item->input_id = slot_array[a].pid + open_lin_NAD;
+        } else {
+            /* for diag do nothing */
+        }
+    }
+}
 
 void LIN_Slave_Initialize(void){
 

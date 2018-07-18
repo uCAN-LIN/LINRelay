@@ -13,6 +13,29 @@
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
         <itemPath>mcc_generated_files/pin_manager.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="open-LIN-c" displayName="open-LIN-c" projectFiles="true">
+        <logicalFolder name="implementation"
+                       displayName="implementation"
+                       projectFiles="true">
+          <logicalFolder name="pic16" displayName="pic16" projectFiles="true">
+          </logicalFolder>
+          <logicalFolder name="ST32" displayName="ST32" projectFiles="true">
+          </logicalFolder>
+          <logicalFolder name="unit_test" displayName="unit_test" projectFiles="true">
+          </logicalFolder>
+          <logicalFolder name="x86" displayName="x86" projectFiles="true">
+            <itemPath>open-LIN-c/implementation/x86/rs232.h</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <itemPath>open-LIN-c/open_lin_cfg.h</itemPath>
+        <itemPath>open-LIN-c/open_lin_data_layer.h</itemPath>
+        <itemPath>open-LIN-c/open_lin_hw.h</itemPath>
+        <itemPath>open-LIN-c/open_lin_master_data_layer.h</itemPath>
+        <itemPath>open-LIN-c/open_lin_network_layer.h</itemPath>
+        <itemPath>open-LIN-c/open_lin_slave_data_layer.h</itemPath>
+        <itemPath>open-LIN-c/open_lin_transport_layer.h</itemPath>
+        <itemPath>open-LIN-c/open_lin_types.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
