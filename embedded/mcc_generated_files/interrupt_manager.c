@@ -49,7 +49,7 @@
 #include "interrupt_manager.h"
 #include "mcc.h"
 
-void interrupt INTERRUPT_InterruptManager (void)
+void __interrupt ()  INTERRUPT_InterruptManager (void)
 {
     // interrupt handler
     if(PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1)

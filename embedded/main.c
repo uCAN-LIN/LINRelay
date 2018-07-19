@@ -87,19 +87,20 @@ open_lin_id_translation_item_t open_lin_id_translation_tab[] =
 };
       
 const l_u8 lenght_of_slot_array = sizeof( slot_array ) / sizeof( open_lin_frame_slot_t );
+const l_u8 lenght_of_translation_array = (sizeof(open_lin_id_translation_tab) / sizeof(open_lin_id_translation_tab[0]));
 
 void open_lin_sid_callback(open_lin_frame_slot_t* slot) {
     /* diagnostic request arrived, only one service is included so no checking done */
-    uint8_t a;
+    l_u8 a;
     /* NAD updated, update frame translation_tab */
-    for (a = 0; a <= sizeof(open_lin_id_translation_tab) / sizeof(open_lin_id_translation_tab[0]); a++)
+    for (a = 0; a < lenght_of_translation_array; a++)
     {
-        open_lin_id_translation_item_t* item = &open_lin_id_translation_tab[a];        
+        open_lin_id_translation_item_t* item = &(open_lin_id_translation_tab[a]);        
         if ((item->id_in_lin_table != OPEN_LIN_DIAG_REQUEST) && (item->id_in_lin_table != OPEN_LIN_DIAG_RESPONSE))
         {
             item->input_id = slot_array[a].pid + open_lin_NAD;
         } else {
-            /* for diag do nothing */
+//            /* for diag do nothing */
         }
     }
 }
@@ -133,9 +134,9 @@ void open_lin_on_rx_frame(open_lin_frame_slot_t *slot)
             
             break;
         default:
-            break;
-         
+            break;       
      }  
+     open_lin_transport_layer_handle(slot);
 }
 
 
