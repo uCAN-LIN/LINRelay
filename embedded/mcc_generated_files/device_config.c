@@ -72,7 +72,7 @@
 // CONFIG4
 #pragma config BBSIZE = BB512    // ->512 words boot block size
 #pragma config BBEN = OFF    // ->Boot Block disabled
-#pragma config SAFEN = OFF    // ->SAF disabled
+#pragma config SAFEN = ON    // ->SAF enabled
 #pragma config WRTAPP = OFF    // ->Application Block not write protected
 #pragma config WRTB = OFF    // ->Boot Block not write protected
 #pragma config WRTC = OFF    // ->Configuration Register not write protected

@@ -52,12 +52,14 @@
 #include "open-LIN-c/open_lin_slave_data_layer.h"
 #include "open-LIN-c/open_lin_transport_layer.h"
 
+#include "nvm.h"
+
 typedef struct {
     l_u8 relay_open : 4;
     l_u8 relay_open_save : 4;
 } t_relay_cmd; 
 
-
+;
 t_relay_cmd R_STAT_1_Data ={0,0};
 t_relay_cmd R_CTR_1_Data = {0,0};
 
@@ -66,8 +68,8 @@ l_u8 diag_buffer[8] = {0,0,0,0,0,0,0,0};
 extern open_lin_NAD_t open_lin_NAD;
 
 typedef enum {
-    R_CTR_1 = 0x02,
-    R_STAT_1 = 0x03
+    R_STAT_1 = 0x00,
+    R_CTR_1 = 0x01
 }lin_cmd_t;
 
 open_lin_frame_slot_t slot_array[] =
@@ -89,8 +91,8 @@ open_lin_id_translation_item_t open_lin_id_translation_tab[] =
 const l_u8 lenght_of_slot_array = sizeof( slot_array ) / sizeof( open_lin_frame_slot_t );
 const l_u8 lenght_of_translation_array = (sizeof(open_lin_id_translation_tab) / sizeof(open_lin_id_translation_tab[0]));
 
-void open_lin_sid_callback(open_lin_frame_slot_t* slot) {
-    /* diagnostic request arrived, only one service is included so no checking done */
+void update_lin_ids()
+{
     l_u8 a;
     /* NAD updated, update frame translation_tab */
     for (a = 0; a < lenght_of_translation_array; a++)
@@ -99,10 +101,18 @@ void open_lin_sid_callback(open_lin_frame_slot_t* slot) {
         if ((item->id_in_lin_table != OPEN_LIN_DIAG_REQUEST) && (item->id_in_lin_table != OPEN_LIN_DIAG_RESPONSE))
         {
             item->input_id = slot_array[a].pid + open_lin_NAD;
+          
         } else {
-//            /* for diag do nothing */
+            /* for diag do nothing */
         }
-    }
+    }    
+}
+
+void open_lin_sid_callback(open_lin_frame_slot_t* slot) {
+    /* diagnostic request arrived, only one service is included so no checking done */
+    /* save configuration */
+    nvm_save_conf(open_lin_NAD);
+    update_lin_ids();
 }
 
 void LIN_Slave_Initialize(void){
@@ -111,7 +121,6 @@ void LIN_Slave_Initialize(void){
     open_lin_net_init(slot_array,lenght_of_slot_array);
 }
 
-uint8_t cnt = 0;
 
 void open_lin_on_rx_frame(open_lin_frame_slot_t *slot)
 {
@@ -139,7 +148,6 @@ void open_lin_on_rx_frame(open_lin_frame_slot_t *slot)
      open_lin_transport_layer_handle(slot);
 }
 
-
 void main(void)
 {
     SYSTEM_Initialize();
@@ -148,6 +156,9 @@ void main(void)
     INTERRUPT_PeripheralInterruptEnable();    
   
     LIN_Slave_Initialize();
+   
+    open_lin_NAD = nvm_read_nad();
+    update_lin_ids();
     
     while (1)
     {

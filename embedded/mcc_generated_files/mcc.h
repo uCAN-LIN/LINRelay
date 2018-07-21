@@ -51,6 +51,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "interrupt_manager.h"
+#include "memory.h"
 #include "tmr0.h"
 #include "eusart1.h"
 
