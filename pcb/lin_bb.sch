@@ -431,7 +431,7 @@ P 7300 2650
 F 0 "Q1" H 7506 2696 50  0000 L CNN
 F 1 "NTR4003NT1G " H 7506 2605 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23" H 7500 2575 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 7300 2650 50  0001 L CNN
+F 3 "" H 7300 2650 50  0001 L CNN
 F 4 "https://www.tme.eu/pl/details/ntr4003nt1g/tranzystory-z-kanalem-n-smd/on-semiconductor/" H 7300 2650 50  0001 C CNN "1st Disrtib Link"
 	1    7300 2650
 	1    0    0    -1  

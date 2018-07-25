@@ -89,6 +89,8 @@
       <itemPath>main.c</itemPath>
       <itemPath>nvm.c</itemPath>
       <itemPath>nvm.h</itemPath>
+      <itemPath>open-LIN-c/ucan.h</itemPath>
+      <itemPath>ucan.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -98,8 +100,7 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>open-LIN-c</Elem>
-    <Elem>memory</Elem>
+    <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

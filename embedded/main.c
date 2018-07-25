@@ -53,27 +53,30 @@
 #include "open-LIN-c/open_lin_transport_layer.h"
 
 #include "nvm.h"
+#include "ucan.h"
 
-typedef struct {
-    l_u8 relay_open : 4;
-    l_u8 relay_open_save : 4;
-} t_relay_cmd; 
 
-;
-t_relay_cmd R_STAT_1_Data ={0,0};
-t_relay_cmd R_CTR_1_Data = {0,0};
+
+t_ucan_relay_cmd R_STAT_1_Data ={0,0};
+t_ucan_relay_cmd R_CTR_1_Data = {0,0};
+
+t_ucan_device_stat D_STAT_1_Data = {
+    UCAN_RELAY
+};
 
 l_u8 diag_buffer[8] = {0,0,0,0,0,0,0,0};
 
 extern open_lin_NAD_t open_lin_NAD;
 
 typedef enum {
-    R_STAT_1 = 0x00,
-    R_CTR_1 = 0x01
+    D_STAT = 0x00,
+    R_STAT_1 = 0x01,
+    R_CTR_1 = 0x02
 }lin_cmd_t;
 
 open_lin_frame_slot_t slot_array[] =
 {
+    {D_STAT,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(D_STAT_1_Data),(l_u8 *)&D_STAT_1_Data},
     {R_CTR_1,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(R_CTR_1_Data),(l_u8 *)&R_CTR_1_Data},
     {R_STAT_1,OPEN_LIN_FRAME_TYPE_TRANSMIT,sizeof(R_STAT_1_Data),(l_u8 *)&R_STAT_1_Data},
     {OPEN_LIN_DIAG_REQUEST,OPEN_LIN_FRAME_TYPE_RECEIVE,sizeof(diag_buffer),diag_buffer},
@@ -111,8 +114,11 @@ void update_lin_ids()
 void open_lin_sid_callback(open_lin_frame_slot_t* slot) {
     /* diagnostic request arrived, only one service is included so no checking done */
     /* save configuration */
-    nvm_save_conf(open_lin_NAD);
-    update_lin_ids();
+    if (open_lin_NAD < 0x36)
+    {
+        nvm_save_conf(open_lin_NAD);
+        update_lin_ids();
+    }
 }
 
 void LIN_Slave_Initialize(void){
@@ -127,7 +133,7 @@ void open_lin_on_rx_frame(open_lin_frame_slot_t *slot)
      switch(slot->pid){
         case R_CTR_1:
         {
-            t_relay_cmd *p = (t_relay_cmd *)(slot->data_ptr);
+            t_ucan_relay_cmd *p = (t_ucan_relay_cmd *)(slot->data_ptr);
             if (p->relay_open)
             {
                 RELAY_OUT_SetLow();
